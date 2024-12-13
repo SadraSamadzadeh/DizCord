@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const OpenSans = Open_Sans({
   variable: "--font-sans",
@@ -18,12 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${OpenSans.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    
+      <ClerkProvider>
+      <html lang="en">
+            <body
+              className={`${OpenSans.variable} antialiased`}
+            >
+              {children}
+            </body>
+      </html>
+      </ClerkProvider>
   );
+      
 }
